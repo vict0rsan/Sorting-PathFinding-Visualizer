@@ -22,6 +22,10 @@ public class Bar extends Rectangle {
     private double dragY;
     private Color color;
 
+    public Bar(){
+
+    }
+
     public Bar(Double xPos, Double yPos,  Double softX, Double softY, Double width, Double height, Color color) {
         super(xPos, yPos, width, height);
         this.xPos = xPos;
