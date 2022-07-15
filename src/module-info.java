@@ -1,4 +1,4 @@
-module com.example.sortingandpathfindingvisualizer {
+module core {
     requires javafx.controls;
     requires javafx.fxml;
 
