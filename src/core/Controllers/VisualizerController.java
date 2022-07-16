@@ -18,12 +18,12 @@ import javafx.scene.layout.VBox;
 
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class HelloController implements Initializable {
+public class VisualizerController implements Initializable {
 
-        public TextField numColumns;
         @FXML
         private AnchorPane graph;
         @FXML
@@ -55,10 +55,9 @@ public class HelloController implements Initializable {
         @FXML
         private CheckBox allowHorizontals;
 
+        public TextField numColumns;
         private BubbleSort bsort;
-
         private Bar[] bars;
-
         private int rightClickCount;
         private String selectedSort;
         private String selectedGridSort;
@@ -66,13 +65,6 @@ public class HelloController implements Initializable {
         private ObservableMap<String, String> observableMap;
         private ObservableMap<String, String> observableGridMap;
         private int cols, rows;
-
-
-
-
-        public void onGridReleased(MouseEvent mouseEvent) {
-
-        }
 
         /**
          * Clear all anchor panes
@@ -144,7 +136,6 @@ public class HelloController implements Initializable {
                 public void handle(ActionEvent event) {
                     selectedSort = comboBox.getValue().toString();
                     System.out.println(selectedSort);
-//                makeBars();
                 }
             };
             EventHandler<ActionEvent> gridEvent = new EventHandler<ActionEvent>() {
@@ -181,7 +172,7 @@ public class HelloController implements Initializable {
                 }
             }
         });
-        if (null != bars) {
+        if (Objects.nonNull(bars)) {
             for (Bar bar : this.bars) {
                 bar.setDuration(Bar.getDuration());
             }
@@ -195,7 +186,7 @@ public class HelloController implements Initializable {
             scrollListener();
             fillDescriptionMap();
             this.comboBox.getItems().addAll(this.observableMap.keySet());
-            this.leftDropDown.getItems().addAll(this.observableGridMap.keySet());
+            //this.leftDropDown.getItems().addAll(this.observableGridMap.keySet());
             comboAction();
         }
 }

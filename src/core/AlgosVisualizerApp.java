@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class AlgosVisualizerApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/visualizer-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(AlgosVisualizerApp.class.getResource("/visualizer-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 800);
         stage.setTitle("Algorithms Visualizer");
         stage.setScene(scene);
         stage.show();
