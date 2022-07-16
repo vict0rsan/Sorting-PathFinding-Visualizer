@@ -5,19 +5,15 @@ import core.Models.Bar;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
-import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 
 public class BubbleSort {
 
-    private int numBars;
-    private ObservableList<Bar> bars;
     private Bar[] barsArray;
     private AnchorPane grid;
     private ArrayList<Transition> transitions;
-    private ArrayList<Transition> fadeTransitions;
     private int duration;
 
     public BubbleSort(Bar [] barsArray, AnchorPane grid){
@@ -30,9 +26,6 @@ public class BubbleSort {
 
     public synchronized void sort(){
         SequentialTransition sequentialTransition = new SequentialTransition();
-        SequentialTransition fadeSequentialTransition = new SequentialTransition();
-        ParallelTransition parallelTransition = new ParallelTransition();
-
         int barsNumber = this.barsArray.length;
 
         for(int i = 0; i < barsNumber; i++){
