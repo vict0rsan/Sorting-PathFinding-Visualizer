@@ -1,6 +1,7 @@
 package core.Controllers;
 
 import core.Algorithms.Sorting.BubbleSort;
+import core.Algorithms.Sorting.QuickSort;
 import core.Algorithms.Utility.SortBars;
 import core.Models.Bar;
 import javafx.beans.value.ChangeListener;
@@ -56,7 +57,8 @@ public class VisualizerController implements Initializable {
         private CheckBox allowHorizontals;
 
         public TextField numColumns;
-        private BubbleSort bsort;
+        private BubbleSort bubbleSort;
+        private QuickSort quickSort;
         private Bar[] bars;
         private int rightClickCount;
         private String selectedSort;
@@ -94,8 +96,12 @@ public class VisualizerController implements Initializable {
                 switch (this.selectedSort) {
                     case "Bubble Sort":
                         this.textArea.setText(this.observableMap.get("Bubble Sort"));
-                        this.bsort = new BubbleSort(this.bars, this.sortGraph);
-                        this.bsort.sort();
+                        this.bubbleSort = new BubbleSort(this.bars, this.sortGraph);
+                        this.bubbleSort.sort();
+                        break;
+                    case "Quick Sort":
+                        this.textArea.setText(this.observableMap.get("Quick Sort"));
+                        this.quickSort = new QuickSort(this.bars, this.sortGraph);
                         break;
                     default:
                         System.out.println("No sorting algorithm selected");
@@ -153,6 +159,7 @@ public class VisualizerController implements Initializable {
         private void fillDescriptionMap() {
             this.observableMap = FXCollections.observableHashMap();
             this.observableMap.put("Bubble Sort", "Bubble Sort has an average of O(n**2) time complexity");
+            this.observableMap.put("Quick Sort", "Quick Sort has average time complexity of O(n*log(n)).");
 
         }
 

@@ -98,11 +98,11 @@ public class SortBars {
         list[j] = tmp;
 
         // Update the color once they have been visited
-        parallelTransition.getChildren().addAll(colorRect(list[i], Color.BLUE, duration), colorRect(list[j], Color.BLUE, duration));
+        parallelTransition.getChildren().addAll(colorBar(list[i], Color.BLUE, duration), colorBar(list[j], Color.BLUE, duration));
         return parallelTransition;
     }
 
-    public static ParallelTransition colorRect(List<Bar> list, Color color) {
+    public static ParallelTransition colorBar(List<Bar> list, Color color) {
         ParallelTransition parallelTransition = new ParallelTransition();
         for (Bar bar : list) {
             FillTransition fillTransition = new FillTransition();
@@ -114,7 +114,7 @@ public class SortBars {
         return parallelTransition;
     }
 
-    public static ParallelTransition colorRect(Bar[] list, Color color, int duration, int...k) {
+    public static ParallelTransition colorBar(Bar[] list, Color color, int duration, int...k) {
         ParallelTransition parallelTransition = new ParallelTransition();
         for (int i = 0; i < k.length; i++) {
             FillTransition fillTransition = new FillTransition();
@@ -126,7 +126,7 @@ public class SortBars {
         return parallelTransition;
     }
 
-    public static ParallelTransition colorRect(Bar bar, Color color, int duration) {
+    public static ParallelTransition colorBar(Bar bar, Color color, int duration) {
         ParallelTransition parallelTransition = new ParallelTransition();
         FillTransition fill = new FillTransition();
         fill.setShape(bar);

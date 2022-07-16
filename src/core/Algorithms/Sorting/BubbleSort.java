@@ -33,11 +33,10 @@ public class BubbleSort {
         SequentialTransition fadeSequentialTransition = new SequentialTransition();
         ParallelTransition parallelTransition = new ParallelTransition();
 
-        boolean changed = false;
         int barsNumber = this.barsArray.length;
 
         for(int i = 0; i < barsNumber; i++){
-            changed = false;
+            boolean changed = false;
 
             for(int j = 0; j < barsNumber-1; j++){
 
