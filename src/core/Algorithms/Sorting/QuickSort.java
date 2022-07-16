@@ -34,28 +34,31 @@ public class QuickSort {
     }
 
     private void sort(int low, int high) {
-        Bar pivot = this.barsArray[low + (high/low)/2];
+        int bottom = low;
+        int upper = high;
+
+        Bar pivot = this.barsArray[low + (high-low)/2];
         this.transitions.add(SortBars.colorBar(pivot, Color.RED, this.duration));
 
-        while(low < high){
+        while(bottom < upper){
 
-            while (this.barsArray[low].getHeight() < pivot.getHeight())
-                low++;
+            while (this.barsArray[bottom].getHeight() < pivot.getHeight())
+                bottom++;
 
-            while (this.barsArray[high].getHeight() > pivot.getHeight())
-                high--;
+            while (this.barsArray[upper].getHeight() > pivot.getHeight())
+                upper--;
 
-            if (low <= high) {
-                this.transitions.add(SortBars.swapBars(this.barsArray, high, low, this.duration));
-                low++;
-                high--;
+            if (bottom <= upper) {
+                this.transitions.add(SortBars.swapBars(this.barsArray, upper, bottom, this.duration));
+                bottom++;
+                upper--;
             }
         }
 
-        if (low < high)
-            sort(low, high);
+        if (low < upper)
+            sort(low, upper);
 
-        if (low < high)
-            sort(low, high);
+        if (bottom < high)
+            sort(bottom, high);
     }
 }
