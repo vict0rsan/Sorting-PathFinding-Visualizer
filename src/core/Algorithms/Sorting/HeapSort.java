@@ -30,20 +30,20 @@ public class HeapSort {
     public void sort() {
         SequentialTransition seqT = new SequentialTransition ();
         int n = this.barsArray.length;
-        this.transitions.add(colorBar(findBranch(this.barsArray, this.barsArray.length), Color.RED));
+        this.transitions.add(colorBar(findBranch(this.barsArray, this.barsArray.length), Color.BLUE));
 
         for (int i = n/2-1; i >= 0; i--) {
             heapify(this.barsArray, n, i);
         }
-        this.transitions.add(colorBar(findBranch(this.barsArray, this.barsArray.length), Color.BLUE));
+        this.transitions.add(colorBar(findBranch(this.barsArray, this.barsArray.length), Color.RED));
         for (int i = this.barsArray.length-1; i >= 0; i--) {
 
-            this.transitions.add(colorBar(this.barsArray, Color.RED, 0));
+            this.transitions.add(colorBar(this.barsArray, Color.BLUE, 0));
             this.transitions.add(swapBars(this.barsArray, 0, i, this.duration));
-            this.transitions.add(colorBar(this.barsArray, Color.RED, this.duration, i));
+            this.transitions.add(colorBar(this.barsArray, Color.BLUE, this.duration, i));
             this.transitions.add(colorBar(findBranch(this.barsArray, i), Color.RED));
             heapify(this.barsArray, i, 0);
-            this.transitions.add(colorBar(findBranch(this.barsArray, i), Color.BLUE));
+            this.transitions.add(colorBar(findBranch(this.barsArray, i), Color.RED));
         }
         seqT.getChildren().addAll(this.transitions);
         seqT.play();

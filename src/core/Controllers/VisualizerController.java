@@ -1,6 +1,7 @@
 package core.Controllers;
 
 import core.Algorithms.Sorting.BubbleSort;
+import core.Algorithms.Sorting.HeapSort;
 import core.Algorithms.Sorting.QuickSort;
 import core.Algorithms.Utility.SortBars;
 import core.Models.Bar;
@@ -59,6 +60,7 @@ public class VisualizerController implements Initializable {
         public TextField numColumns;
         private BubbleSort bubbleSort;
         private QuickSort quickSort;
+        private HeapSort heapSort;
         private Bar[] bars;
         private int rightClickCount;
         private String selectedSort;
@@ -97,12 +99,14 @@ public class VisualizerController implements Initializable {
                     case "Bubble Sort":
                         this.textArea.setText(this.observableMap.get("Bubble Sort"));
                         this.bubbleSort = new BubbleSort(this.bars, this.sortGraph);
-                        this.bubbleSort.sort();
                         break;
                     case "Quick Sort":
                         this.textArea.setText(this.observableMap.get("Quick Sort"));
                         this.quickSort = new QuickSort(this.bars, this.sortGraph);
                         break;
+                    case "Heap Sort":
+                        this.textArea.setText(this.observableMap.get("Heap Sort"));
+                        this.heapSort = new HeapSort(this.bars, this.sortGraph);
                     default:
                         System.out.println("No sorting algorithm selected");
                         break;
@@ -160,6 +164,7 @@ public class VisualizerController implements Initializable {
             this.observableMap = FXCollections.observableHashMap();
             this.observableMap.put("Bubble Sort", "Bubble Sort has an average of O(n**2) time complexity");
             this.observableMap.put("Quick Sort", "Quick Sort has average time complexity of O(n*log(n)).");
+            this.observableMap.put("Heap Sort", "Heap Sort has an overall time complexity of O(n*log(n). Heapify is O(log(n)) and build heap is O(n).");
 
         }
 
