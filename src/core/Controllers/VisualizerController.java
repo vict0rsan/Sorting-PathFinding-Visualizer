@@ -2,6 +2,7 @@ package core.Controllers;
 
 import core.Algorithms.Sorting.BubbleSort;
 import core.Algorithms.Sorting.HeapSort;
+import core.Algorithms.Sorting.InsertionSort;
 import core.Algorithms.Sorting.QuickSort;
 import core.Algorithms.Utility.SortBars;
 import core.Models.Bar;
@@ -14,9 +15,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 
 import java.net.URL;
@@ -27,45 +26,30 @@ import java.util.ResourceBundle;
 public class VisualizerController implements Initializable {
 
         @FXML
-        private AnchorPane graph;
-        @FXML
         private AnchorPane sortGraph;
-        @FXML
-        private AnchorPane grid;
+
         @FXML
         private Slider scrollBar;
-        @FXML
-        private Label numLabel;
+
         @FXML
         private TextField numBars;
         @FXML
         private ComboBox comboBox;
         @FXML
         private TextArea textArea;
-        @FXML
-        private TabPane tabPane;
-        @FXML
-        private Tab graphTab;
-        @FXML
-        private Tab sortTab;
-        @FXML
-        private Tab gridTab;
-        @FXML
-        private VBox sideVBox;
+
         @FXML
         private ComboBox leftDropDown;
-        @FXML
-        private CheckBox allowHorizontals;
+
 
         public TextField numColumns;
         private BubbleSort bubbleSort;
         private QuickSort quickSort;
         private HeapSort heapSort;
+        private InsertionSort insertionSort;
         private Bar[] bars;
-        private int rightClickCount;
         private String selectedSort;
         private String selectedGridSort;
-        private boolean isGridActive;
         private ObservableMap<String, String> observableMap;
         private ObservableMap<String, String> observableGridMap;
         private int cols, rows;
@@ -75,15 +59,7 @@ public class VisualizerController implements Initializable {
          * @param event
          */
         public void handleClear(ActionEvent event) {
-            if (!this.graph.getChildren().isEmpty()) {
-                this.graph.getChildren().clear();
-            }
-            if (!this.sortGraph.getChildren().isEmpty()) {
-                this.sortGraph.getChildren().clear();
-            }
-            if (!this.grid.getChildren().isEmpty()) {
-                this.grid.getChildren().clear();
-            }
+           System.out.println("Clearing stuff");
         }
 
         /**
@@ -106,6 +82,9 @@ public class VisualizerController implements Initializable {
                         break;
                     case "Heap Sort":
                         this.textArea.setText(this.observableMap.get("Heap Sort"));
+                        this.heapSort = new HeapSort(this.bars, this.sortGraph);
+                    case "Insertion Sort":
+                        this.textArea.setText(this.observableMap.get("Insertion Sort"));
                         this.heapSort = new HeapSort(this.bars, this.sortGraph);
                     default:
                         System.out.println("No sorting algorithm selected");
@@ -162,9 +141,10 @@ public class VisualizerController implements Initializable {
 
         private void fillDescriptionMap() {
             this.observableMap = FXCollections.observableHashMap();
-            this.observableMap.put("Bubble Sort", "Bubble Sort has an average of O(n**2) time complexity");
-            this.observableMap.put("Quick Sort", "Quick Sort has average time complexity of O(n*log(n)).");
-            this.observableMap.put("Heap Sort", "Heap Sort has an overall time complexity of O(n*log(n). Heapify is O(log(n)) and build heap is O(n).");
+            this.observableMap.put("Bubble Sort", "Bubble Sort has an average of O(n^2) time complexity");
+            this.observableMap.put("Quick Sort", "Quick Sort has average time complexity of O(n*log(n))");
+            this.observableMap.put("Heap Sort", "Heap Sort has an overall time complexity of O(n*log(n). Heapify is O(log(n)) and build heap is O(n)");
+            this.observableMap.put("Insertion Sort", "Insertion sort has an average of O(n^2) time complexity");
 
         }
 
