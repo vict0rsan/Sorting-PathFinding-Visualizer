@@ -17,9 +17,9 @@ public class QuickSort {
     private SequentialTransition sequentialTransition;
     private int duration;
 
-    public QuickSort(Bar[] _rectArr, AnchorPane _grid) {
-        this.grid = _grid;
-        this.barsArray = _rectArr;
+    public QuickSort(Bar[] barsArray, AnchorPane grid) {
+        this.grid = grid;
+        this.barsArray = barsArray;
         this.duration = Bar.getDuration();
         this.sequentialTransition = new SequentialTransition();
         this.transitions = new ArrayList<>();
