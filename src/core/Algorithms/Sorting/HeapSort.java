@@ -14,7 +14,6 @@ import static core.Algorithms.Utility.SortBars.*;
 public class HeapSort {
 
     private AnchorPane grid;
-    private int numBars;
     private Bar[] barsArray;
     private ArrayList<Transition> transitions;
     private int duration;
@@ -28,16 +27,17 @@ public class HeapSort {
     }
 
     public void sort() {
-        SequentialTransition seqT = new SequentialTransition ();
-        int n = this.barsArray.length;
+        SequentialTransition sequentialTransition = new SequentialTransition ();
+        int barsNumber = this.barsArray.length;
         this.transitions.add(colorBar(findBranch(this.barsArray, this.barsArray.length), Color.BLUE));
 
-        for (int i = n/2-1; i >= 0; i--) {
-            heapify(this.barsArray, n, i);
+        for (int i = barsNumber/2 - 1; i >= 0; i--) {
+            heapify(this.barsArray, barsNumber, i);
         }
-        this.transitions.add(colorBar(findBranch(this.barsArray, this.barsArray.length), Color.RED));
-        for (int i = this.barsArray.length-1; i >= 0; i--) {
 
+        this.transitions.add(colorBar(findBranch(this.barsArray, this.barsArray.length), Color.RED));
+
+        for (int i = barsNumber - 1; i >= 0; i--) {
             this.transitions.add(colorBar(this.barsArray, Color.BLUE, 0));
             this.transitions.add(swapBars(this.barsArray, 0, i, this.duration));
             this.transitions.add(colorBar(this.barsArray, Color.BLUE, this.duration, i));
@@ -45,41 +45,42 @@ public class HeapSort {
             heapify(this.barsArray, i, 0);
             this.transitions.add(colorBar(findBranch(this.barsArray, i), Color.RED));
         }
-        seqT.getChildren().addAll(this.transitions);
-        seqT.play();
+
+        sequentialTransition.getChildren().addAll(this.transitions);
+        sequentialTransition.play();
     }
 
     /**
      * Heapify the subtree at node i.
-     * @param _arr
-     * @param _heapSize
-     * @param _root
+     * @param barsArray
+     * @param heapSize
+     * @param root
      */
-    private void heapify(Bar[] _arr, int _heapSize, int _root) {
-        int largest = _root;
-        int l = 2 * _root + 1;
-        int r = 2 * _root + 2;
+    private void heapify(Bar[] barsArray, int heapSize, int root) {
+        int largest = root;
+        int left = 2*root + 1;
+        int right = 2*root + 2;
 
         // Checks if the left subtree is larger than the root
-        if (r < _heapSize && _arr[l].getHeight() > _arr[largest].getHeight())
-            largest = l;
+        if (right < heapSize && barsArray[left].getHeight() > barsArray[largest].getHeight())
+            largest = left;
 
         // Checks if the right subtree is larger than the root
-        if (r < _heapSize && _arr[r].getHeight() > _arr[largest].getHeight())
-            largest = r;
+        if (right < heapSize && barsArray[right].getHeight() > barsArray[largest].getHeight())
+            largest = right;
 
         // If the root is not the largest value
-        if (largest != _root) {
-            this.transitions.add(swapBars(this.barsArray, largest, _root, this.duration));
-            heapify(_arr, _heapSize, largest);
+        if (largest != root) {
+            this.transitions.add(swapBars(this.barsArray, largest, root, this.duration));
+            heapify(barsArray, heapSize, largest);
         }
     }
 
-    private ArrayList<Bar> findBranch(Bar[] _arr, int _a) {
-        ArrayList<Bar> arrLst = new ArrayList<>();
-        for (int i = 0; i < _a; i++) {
-            arrLst.add(_arr[i]);
+    private ArrayList<Bar> findBranch(Bar[] barsArray, int a) {
+        ArrayList<Bar> bars = new ArrayList<>();
+        for (int i = 0; i < a; i++) {
+            bars.add(barsArray[i]);
         }
-        return arrLst;
+        return bars;
     }
 }
