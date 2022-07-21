@@ -1,9 +1,6 @@
 package core.Controllers;
 
-import core.Algorithms.Sorting.BubbleSort;
-import core.Algorithms.Sorting.HeapSort;
-import core.Algorithms.Sorting.InsertionSort;
-import core.Algorithms.Sorting.QuickSort;
+import core.Algorithms.Sorting.*;
 import core.Algorithms.Utility.SortBars;
 import core.Models.Bar;
 import javafx.beans.value.ChangeListener;
@@ -47,6 +44,7 @@ public class VisualizerController implements Initializable {
         private QuickSort quickSort;
         private HeapSort heapSort;
         private InsertionSort insertionSort;
+        private CoctailSort coctailSort;
         private Bar[] bars;
         private String selectedSort;
         private String selectedGridSort;
@@ -86,6 +84,10 @@ public class VisualizerController implements Initializable {
                     case "Insertion Sort":
                         this.textArea.setText(this.observableMap.get("Insertion Sort"));
                         this.heapSort = new HeapSort(this.bars, this.sortGraph);
+                    case "Coctail Sort":
+                        this.textArea.setText(this.observableMap.get("Coctail Sort"));
+                        this.coctailSort = new CoctailSort(this.bars, this.sortGraph);
+                        break;
                     default:
                         System.out.println("No sorting algorithm selected");
                         break;
@@ -143,8 +145,11 @@ public class VisualizerController implements Initializable {
             this.observableMap = FXCollections.observableHashMap();
             this.observableMap.put("Bubble Sort", "Bubble Sort has an average of O(n^2) time complexity");
             this.observableMap.put("Quick Sort", "Quick Sort has average time complexity of O(n*log(n))");
+            //TODO
             this.observableMap.put("Heap Sort", "Heap Sort has an overall time complexity of O(n*log(n). Heapify is O(log(n)) and build heap is O(n)");
             this.observableMap.put("Insertion Sort", "Insertion sort has an average of O(n^2) time complexity");
+            this.observableMap.put("Coctail Sort", "Coctail Sort has a worst and average time complexity of O(n^2). " +
+                    "Compared to Bubble Sort, Coctail Sort performs better, typically less than two times faster");
 
         }
 
