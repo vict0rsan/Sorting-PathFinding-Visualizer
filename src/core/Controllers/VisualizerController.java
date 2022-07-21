@@ -81,9 +81,12 @@ public class VisualizerController implements Initializable {
                     case "Heap Sort":
                         this.textArea.setText(this.observableMap.get("Heap Sort"));
                         this.heapSort = new HeapSort(this.bars, this.sortGraph);
+                        this.heapSort.sort();
+                        break;
                     case "Insertion Sort":
                         this.textArea.setText(this.observableMap.get("Insertion Sort"));
                         this.heapSort = new HeapSort(this.bars, this.sortGraph);
+                        break;
                     case "Coctail Sort":
                         this.textArea.setText(this.observableMap.get("Coctail Sort"));
                         this.coctailSort = new CoctailSort(this.bars, this.sortGraph);
@@ -145,7 +148,6 @@ public class VisualizerController implements Initializable {
             this.observableMap = FXCollections.observableHashMap();
             this.observableMap.put("Bubble Sort", "Bubble Sort has an average of O(n^2) time complexity");
             this.observableMap.put("Quick Sort", "Quick Sort has average time complexity of O(n*log(n))");
-            //TODO
             this.observableMap.put("Heap Sort", "Heap Sort has an overall time complexity of O(n*log(n). Heapify is O(log(n)) and build heap is O(n)");
             this.observableMap.put("Insertion Sort", "Insertion sort has an average of O(n^2) time complexity");
             this.observableMap.put("Coctail Sort", "Coctail Sort has a worst and average time complexity of O(n^2). " +
