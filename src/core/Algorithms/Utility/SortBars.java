@@ -102,7 +102,7 @@ public class SortBars {
         return parallelTransition;
     }
 
-    public static ParallelTransition colorBar(List<Bar> list, Color color) {
+    public static ParallelTransition colorBar(List<Bar> list, Color color, int duration) {
         ParallelTransition parallelTransition = new ParallelTransition();
         for (Bar bar : list) {
             FillTransition fillTransition = new FillTransition();
